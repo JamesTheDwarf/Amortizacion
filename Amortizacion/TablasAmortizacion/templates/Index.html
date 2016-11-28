@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Amortizaciones</title>
+    </head>
+    <body>
+        Esto funciona bien
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Calcular" />
+        </form>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Periodo</th>
+                    <th>Capital inicial</th>
+                    <th>Amortización</th>
+                    <th>Interés</th>
+                    <th>Pago</th>
+                    <th>Capital final</th>
+                </tr>
+            </thead>
+            {% for solicitud in solicitudes %}
+            <tbody>
+                <td>{{solicitud.periodo}}</td>
+                <td>{{solicitud.capitalInicial}}</td>
+                <td>{{solicitud.amortizacion}}</td>
+                <td>{{solicitud.interes}}</td>
+                <td>{{solicitud.pago}}</td>
+                <td>{{solicitud.capitalFinal}}</td>
+
+                {% empty %}
+                <p>No hay solicitudes</p>
+
+            </tbody>
+            <br>
+            {% endfor %}
+        </table>
+
+    </body>
+</html>
