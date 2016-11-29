@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views.generic import FormView
 from .forms import CalculoAmortizacion
-from .utils import FilaAmortizacionIgual, amortizacionIgual
+from .utils import *
 
 class Index(FormView):
     template_name = "Index.html"
@@ -21,12 +21,16 @@ class Index(FormView):
         
         #Creamos nuestra primera lista para amortizacionIgual
         lamortizacionIgual = amortizacionIgual(TE,TE100,periodosRango,periodos,capitalInicial)
-        
-        
-            
+        ltipoBullet = tipoBullet(TE,TE100,periodosRango,periodos,capitalInicial)
+        lcrecientes = crecientes(TE,TE100,periodosRango,periodos,capitalInicial)
+        liguales = iguales(TE,TE100,periodosRango,periodos,capitalInicial)
 
         return render(
             self.request,
             self.template_name,
-            {'solicitudes' : lamortizacionIgual, }
+            {'solicitudes' : lamortizacionIgual,
+             'bullets': ltipoBullet,
+             'crecientes':lcrecientes,
+             'iguales': liguales,
+            }
         )

@@ -1,44 +1,162 @@
+{% load staticfiles %}
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="{% static 'TablasAmortizacion/css/materialize.css' %}" media="screen,projection"/>
         <title>Amortizaciones</title>
     </head>
     <body>
-        Esto funciona bien
-        <form method="post">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <input type="submit" value="Calcular" />
-        </form>
+        <nav></nav>
 
-        <table>
-            <thead>
-                <tr>
-                    <th>Periodo</th>
-                    <th>Capital inicial</th>
-                    <th>Amortización</th>
-                    <th>Interés</th>
-                    <th>Pago</th>
-                    <th>Capital final</th>
-                </tr>
-            </thead>
-            {% for solicitud in solicitudes %}
-            <tbody>
-                <td>{{solicitud.periodo}}</td>
-                <td>{{solicitud.capitalInicial}}</td>
-                <td>{{solicitud.amortizacion}}</td>
-                <td>{{solicitud.interes}}</td>
-                <td>{{solicitud.pago}}</td>
-                <td>{{solicitud.capitalFinal}}</td>
+        <div class="container">
+            <div class="card-panel white z-depth-3">
+                <center>
+                    <h4>Tablas de Amortizaciones</h4>
+                </center>
+                <p>Ingresa debajo los datos para calcular los valores.</p>
 
-                {% empty %}
-                <p>No hay solicitudes</p>
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <input type="submit" class="waves-light light-green btn" value="Calcular" />
+                </form>
+            </div>
+            <div class="card-panel white z-depth-3">
+                <center><h4>Amortizaciones Iguales</h4></center>
+                <table class="highlight bordered ">
+                    <thead>
+                        <tr>
+                            <th>Periodo</th>
+                            <th>Capital inicial</th>
+                            <th>Amortización</th>
+                            <th>Interés</th>
+                            <th>Pago</th>
+                            <th>Capital final</th>
+                        </tr>
+                    </thead>
+                    {% for solicitud in solicitudes %}
+                    <tbody>
+                        <td>{{solicitud.periodo}}</td>
+                        <td>{{solicitud.capitalInicial}}</td>
+                        <td>{{solicitud.amortizacion}}</td>
+                        <td>{{solicitud.interes}}</td>
+                        <td>{{solicitud.pago}}</td>
+                        <td>{{solicitud.capitalFinal}}</td>
 
-            </tbody>
-            <br>
-            {% endfor %}
-        </table>
+                        {% empty %}
+                        <p>No hay solicitudes</p>
 
+                    </tbody>
+                    <br>
+                    {% endfor %}
+                </table>
+            </div>
+
+            <div class="card-panel white z-depth-3">
+                <center><h4>Amortizaciones tipo Bullet</h4></center>
+                <table class="highlight bordered ">
+                    <thead>
+                        <tr>
+                            <th>Periodo</th>
+                            <th>Capital inicial</th>
+                            <th>Amortización</th>
+                            <th>Interés</th>
+                            <th>Pago</th>
+                            <th>Capital final</th>
+                        </tr>
+                    </thead>
+                    {% for bullet in bullets %}
+                    <tbody>
+                        <td>{{bullet.periodo}}</td>
+                        <td>{{bullet.capitalInicial}}</td>
+                        <td>{{bullet.amortizacion}}</td>
+                        <td>{{bullet.interes}}</td>
+                        <td>{{bullet.pago}}</td>
+                        <td>{{bullet.capitalFinal}}</td>
+
+                        {% empty %}
+                        <p>No hay solicitudes</p>
+
+                    </tbody>
+                    <br>
+                    {% endfor %}
+                </table>
+            </div>
+
+            <div class="card-panel white z-depth-3">
+                <center><h4>Pagos Crecientes</h4></center>
+                <table class="highlight bordered ">
+                    <thead>
+                        <tr>
+                            <th>Periodo</th>
+                            <th>Capital inicial</th>
+                            <th>Amortización</th>
+                            <th>Interés</th>
+                            <th>Pago</th>
+                            <th>Capital final</th>
+                        </tr>
+                    </thead>
+                    {% for creciente in crecientes %}
+                    <tbody>
+                        <td>{{creciente.periodo}}</td>
+                        <td>{{creciente.capitalInicial}}</td>
+                        <td>{{creciente.amortizacion}}</td>
+                        <td>{{creciente.interes}}</td>
+                        <td>{{creciente.pago}}</td>
+                        <td>{{creciente.capitalFinal}}</td>
+
+                        {% empty %}
+                        <p>No hay solicitudes</p>
+
+                    </tbody>
+                    <br>
+                    {% endfor %}
+                </table>
+            </div>
+
+            <div class="card-panel white z-depth-3">
+                <center><h4>Pagos Iguales</h4></center>
+                <table class="highlight bordered ">
+                    <thead>
+                        <tr>
+                            <th>Periodo</th>
+                            <th>Capital inicial</th>
+                            <th>Amortización</th>
+                            <th>Interés</th>
+                            <th>Pago</th>
+                            <th>Capital final</th>
+                        </tr>
+                    </thead>
+                    {% for igual in iguales %}
+                    <tbody>
+                        <td>{{igual.periodo}}</td>
+                        <td>{{igual.capitalInicial}}</td>
+                        <td>{{igual.amortizacion}}</td>
+                        <td>{{igual.interes}}</td>
+                        <td>{{igual.pago}}</td>
+                        <td>{{igual.capitalFinal}}</td>
+
+                        {% empty %}
+                        <p>No hay solicitudes</p>
+
+                    </tbody>
+                    <br>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+        </div>
+ <nav>
+   <div class="container">
+    <div class="nav-wrapper">
+      <ul id="nav-mobile" class="left hide-on-med-and-down">
+        <li>Hecho con amor y Django</li>
+      </ul>
+    </div>
+        
+     </div>
+  </nav>
     </body>
+<script  type="text/javascript" src="{% static 'TablasAmortizacion/js/materialize.min.js' %}"></script>
 </html>
